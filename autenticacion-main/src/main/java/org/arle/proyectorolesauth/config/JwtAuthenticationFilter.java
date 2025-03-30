@@ -32,6 +32,15 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
+
+        // Ignorar completamente las rutas de autenticación
+        String requestPath = request.getServletPath();
+        if (requestPath.startsWith("/api/auth/")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
+        // El resto de tu código actual para validar tokens
         String token = request.getHeader("Authorization");
         if (token == null || !token.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
