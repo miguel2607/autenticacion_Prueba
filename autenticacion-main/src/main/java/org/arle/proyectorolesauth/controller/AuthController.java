@@ -1,8 +1,7 @@
 package org.arle.proyectorolesauth.controller;
 
 import org.arle.proyectorolesauth.service.UserService;
-import org.arle.proyectorolesauth.controller.LoginRequest;
-import org.arle.proyectorolesauth.controller.RegisterRequest;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

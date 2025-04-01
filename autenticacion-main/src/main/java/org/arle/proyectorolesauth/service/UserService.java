@@ -26,11 +26,17 @@ public class UserService {
     }
 
     public String register(RegisterRequest request) {
-        User user = new User();
-        user.setUsername(request.getUsername());
-        user.setPassword(passwordEncoder.encode(request.getPassword()));
-        userRepository.save(user);
-        return jwtService.generateToken(user);
+        try {
+            User user = new User();
+            user.setUsername(request.getUsername());
+            user.setPassword(passwordEncoder.encode(request.getPassword()));
+            userRepository.save(user);
+            return jwtService.generateToken(user);
+        } catch (Exception e) {
+            System.err.println("Error durante el registro: " + e.getMessage());
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     public String authenticate(LoginRequest request) {
