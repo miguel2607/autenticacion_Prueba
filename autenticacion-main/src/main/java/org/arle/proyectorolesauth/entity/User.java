@@ -21,6 +21,8 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String password;
 
+
+
     public Long getId() {
         return id;
     }
